@@ -1,11 +1,11 @@
 # READ ME
 -----------------------------
+
 There's no need of db dump, as it has a db initializer integrated.
 The only thing to do is run 
 
 	Add-migration NewTestEnv
-
-And then:
+	
 	update-database
 
 After the first time it runs, the testing users created are:
@@ -17,14 +17,17 @@ After the first time it runs, the testing users created are:
 	Role: Client
 
 
-#List of allowed calls for unregistered users:
+# List of allowed calls for unregistered users:
 
 Get the list of movies
 ------------
 
 Parameters accepted: /{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
+
 Sortby values { 0: title, 1: likes }
+
 Endpoint movie/list/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
+
 Sample requests:
 
 	GET https://localhost:44384/movie/list
