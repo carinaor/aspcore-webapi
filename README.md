@@ -67,8 +67,11 @@ Sample response
 Search movies query
 -----
 Parameters accepted: /{q}/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
+
 (If empty the default page size will be 2 items per page)
+
 Endpoint /Movie/Search/{q}
+
 Sample call 
 	
 	GET https://localhost:44384/movie/Search/harry
@@ -95,7 +98,9 @@ Sample Response:
 Get a movie details
 -------------
 Parametes: {id}
+
 Endpoint /movie/Detail/{id}
+
 Sample Request:
 	
 	GET https://localhost:44384/movie/Detail/1
@@ -118,12 +123,15 @@ Sample Response:
 Register
 ------------
 Any user registered this way will be assigned the role of client, only admins can create other admin.
+
 You can create a user but to confirm email, you need to follow these steps.
 
 1 - If you already have an email service add the data on the appsettings.json or appsettings.Development.json. 
+
 If you don't, I used mailtrap.io, it's free and easy to configure, I recommend this last option.
 
 2 - Receive the data on the inbox of mailtrap and copy the link on the browser.
+
 3 - It's also needed for forget password
 		
 Sample request
@@ -149,8 +157,11 @@ Sample Response(value is the userid):
 ConfirmEmail
 ------------
 Parameters userid and token
+
 Method GET
+
 Endpoint ConfirmEmail?userid={userid}&token={encryptedtoken}
+
 Sample email:
 
 	https://localhost:44384/ConfirmEmail?userid=adce201f-7f02-44b9-af83-7c59db4e58af&token=Q2ZESjhDYjFRQWRJV3hsQ2tDSUUraDBkKzJ4b1YxbWR4a0QwR3hraitWZVdVS0xnSnZFYnBKOGJjL2h3dndCNFVkbk1jQXJCaUZ5N2pTTGZHUGI1WGJWQXpRMUpQZlpCOStPVjc3UDJWTEJJb3Q5bVUwK1UzV0tZMUp5WE93aSs5cEpHZTNNdUs0YkhOc0tnWTJrUmJjVFFXU2RFN1Uxdll4STUxUWNCVmtpNnM5emExanBNZlZ3cmN5ZS9yeDZLNXJBS2ZZdjIyeGNHeldXbGNYOEppMnJ1Q0NLUWRXYU5EcXNBNXk0UVY4RDFveXNBdGhCM2kwODBBbTZqaW9VUENCY0grQT09
@@ -220,6 +231,7 @@ Sample response
 Edit movie
 -----
 Endpoint movie/Edit
+
 Sample request
 
 	POST https://localhost:44384/movie/Edit HTTP/2.0
@@ -266,8 +278,11 @@ Sample response:
 Complete movies list (not filtered by availability)
 -----------
 Parameters: Admin/List/{availability:int?}/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
+
 availability values {0: unavariable movies, 1: available movies, 2: all}
+
 If no data is entered the default value is to bring all (only for admins)
+
 sample request
 
 	GET https://localhost:44384/movie/admin/list/0
@@ -306,7 +321,10 @@ Sample response
 	
 search for admins
 --------
+Endpoint /movie/Admin/Search/Bob
+
 Just like the search function for unregistered user/clients but with the possibility of filtering by availability
+
 sample request
 
 	GET https://localhost:44384/movie/Admin/Search/Bob
@@ -458,7 +476,7 @@ Sample Response(value is userid):
 	  "errorList": null
 	}
 	
-#List of actions allowed for Clients and Admins
+# List of actions allowed for Clients and Admins
 
 Logout
 -----
@@ -577,11 +595,12 @@ Sample response
 	  }
 	]
 
-#List of actions that can be done for unregistered users, client and admins
+# List of actions that can be done for unregistered users, client and admins
 
 Forget password 
 ---------
 Endpoint: ForgetPassword?email={email}
+
 sample request
 
 	GET https://localhost:44384/ForgetPassword?email=newuser3@admin.com
