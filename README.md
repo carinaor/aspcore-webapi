@@ -10,51 +10,52 @@ And then:
 
 After the first time it runs, the testing users created are:
 
-admin@admin.com Psw: administrator123
-Role: Admin
+	admin@admin.com Psw: administrator123
+	Role: Admin
 
-client@client.com Psw: password123
-Role: Client
+	client@client.com Psw: password123
+	Role: Client
 
 
 List of allowed calls for unregistered users:
-
-		# Get the list of movies
-		Parameters accepted: /{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
-		Sortby values { 0: title, 1: likes }
-		Endpoint movie/list/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
-		Sample requests: 	GET https://localhost:44384/movie/list
-								GET https://localhost:44384/movie/list/4/0/1
+------------
+# Get the list of movies
+Parameters accepted: /{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
+Sortby values { 0: title, 1: likes }
+Endpoint movie/list/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
+Sample requests: 	
+	GET https://localhost:44384/movie/list
+	GET https://localhost:44384/movie/list/4/0/1
 		
 		
-		Sample response 
+Sample response 
+	{
+	  "list": [
 		{
-		  "list": [
-			{
-			  "id": 2,
-			  "title": "HARRY POTTER AND THE SORCERER\u0027S STONE",
-			  "description": "Harry Potter and the Sorcerer\u0027s Stone adapts its source material faithfully while condensing the novel\u0027s overstuffed narrative into an involving -- and often downright exciting -- big-screen magical caper.",
-			  "rentalPrice": 3,
-			  "salePrice": 200.5,
-			  "img": "https://resizing.flixster.com/Q5W7m_i_f24Q_a4zLeRxNvx1WAs=/206x305/v2/https://flxt.tmsimg.com/assets/p28630_p_v8_at.jpg",
-			  "stock": 0,
-			  "availability": true,
-			  "countLikes": 0
-			},
-			{
-			  "id": 1,
-			  "title": "KAMP KORAL: SPONGEBOB",
-			  "description": "From Nickelodeon, KAMP KORAL: SPONGEBOB\u0027S UNDER YEARS is the first-ever SpongeBob SquarePants spinoff. The CG-animated prequel series follows 10-year-old SpongeBob SquarePants and his pals during summer sleepaway camp where they spend their time building underwater campfires, catching wild jellyfish and swimming in Lake Yuckymuck at the craziest camp in the kelp forest, Kamp Koral.",
-			  "rentalPrice": 3,
-			  "salePrice": 200.5,
-			  "img": "https://resizing.flixster.com/hVncxQGAjTZrbIUFtxJEPPb1dU0=/180x257/v2/https://resizing.flixster.com/NjNMaJNZgDiAtQUs8y5x77oLTTQ=/ems.ZW1zLXByZC1hc3NldHMvdHZzZXJpZXMvM2FmMmI0ZjAtZTg5MC00YjAzLWJiOGItNzg3YjVlMzczNThmLmpwZw==",
-			  "stock": 0,
-			  "availability": true,
-			  "countLikes": 0
-			}
-		  ],
-		  "totalitems": 2
+		  "id": 2,
+		  "title": "HARRY POTTER AND THE SORCERER\u0027S STONE",
+		  "description": "Harry Potter and the Sorcerer\u0027s Stone adapts its source material faithfully while condensing the novel\u0027s overstuffed narrative into an involving -- and often downright exciting -- big-screen magical caper.",
+		  "rentalPrice": 3,
+		  "salePrice": 200.5,
+		  "img": "https://resizing.flixster.com/Q5W7m_i_f24Q_a4zLeRxNvx1WAs=/206x305/v2/https://flxt.tmsimg.com/assets/p28630_p_v8_at.jpg",
+		  "stock": 0,
+		  "availability": true,
+		  "countLikes": 0
+		},
+		{
+		  "id": 1,
+		  "title": "KAMP KORAL: SPONGEBOB",
+		  "description": "From Nickelodeon, KAMP KORAL: SPONGEBOB\u0027S UNDER YEARS is the first-ever SpongeBob SquarePants spinoff. The CG-animated prequel series follows 10-year-old SpongeBob SquarePants and his pals during summer sleepaway camp where they spend their time building underwater campfires, catching wild jellyfish and swimming in Lake Yuckymuck at the craziest camp in the kelp forest, Kamp Koral.",
+		  "rentalPrice": 3,
+		  "salePrice": 200.5,
+		  "img": "https://resizing.flixster.com/hVncxQGAjTZrbIUFtxJEPPb1dU0=/180x257/v2/https://resizing.flixster.com/NjNMaJNZgDiAtQUs8y5x77oLTTQ=/ems.ZW1zLXByZC1hc3NldHMvdHZzZXJpZXMvM2FmMmI0ZjAtZTg5MC00YjAzLWJiOGItNzg3YjVlMzczNThmLmpwZw==",
+		  "stock": 0,
+		  "availability": true,
+		  "countLikes": 0
 		}
+	  ],
+	  "totalitems": 2
+	}
 		
 		#Search movies query
 		Parameters accepted: /{q}/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
