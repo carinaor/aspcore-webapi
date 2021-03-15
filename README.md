@@ -17,17 +17,17 @@ client@client.com Psw: password123
 Role: Client
 
 
-List of sample calls for unregistered users:
+List of allowed calls for unregistered users:
 
 		# Get the list of movies
 		Parameters accepted: /{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
-		sortby values { 0: title, 1: likes }
+		Sortby values { 0: title, 1: likes }
 		Endpoint movie/list/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
-		Samples of requests: GET https://localhost:44384/movie/list
-		GET https://localhost:44384/movie/list/4/0/1
+		Sample requests: 	GET https://localhost:44384/movie/list
+								GET https://localhost:44384/movie/list/4/0/1
 		
 		
-		Sample of Response 
+		Sample response 
 		{
 		  "list": [
 			{
@@ -58,7 +58,7 @@ List of sample calls for unregistered users:
 		
 		#Search movies query
 		Parameters accepted: /{q}/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
-		(If empty the default pagesize will be 2 items per page)
+		(If empty the default page size will be 2 items per page)
 		Endpoint /Movie/Search/{q}
 		Sample call GET https://localhost:44384/movie/Search/harry
 		
@@ -81,7 +81,7 @@ List of sample calls for unregistered users:
 		  "totalitems": 1
 		}
 
-		#Get details about a movie
+		#Get a movie details
 		Parametes: {id}
 		Endpoint /movie/Detail/{id}
 		Sample Request: GET https://localhost:44384/movie/Detail/1
@@ -103,10 +103,11 @@ List of sample calls for unregistered users:
 		#Register
 		Any user registered this way will be assigned the role of client, only admins can create other admin.
 		You can create a user but to confirm email, you need to follow these steps.
-		1 - If you have already have a email service add the data on the appsettings.json or appsettings.Development.json. 
+		1 - If you already have an email service add the data on the appsettings.json or appsettings.Development.json. 
 			If you don't, I used mailtrap.io, it's free and easy to configure, I recommend this last option.
 		
 		2 - Receive the data on the inbox of mailtrap and copy the link on the browser.
+		3 - It's also needed for forget password
 		
 		POST https://localhost:44384/Register
 		Content-Type: application/json
@@ -117,7 +118,7 @@ List of sample calls for unregistered users:
 			"ConfirmPassword": "password123"
 		}
 		
-		Sample Response(returns the id of the user created as message):
+		Sample Response(value is the userid):
 		{
 		  "message": "New user registered",
 		  "value": "adce201f-7f02-44b9-af83-7c59db4e58af",
@@ -148,7 +149,7 @@ List of sample calls for unregistered users:
 			"Password": "password123"
 		}
 		
-		Sample of the response received (token as message field)
+		Sample response received (token as message field)
 		
 		{
 		  "message": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYWY3YTFjOWEtNjAzOS00Zjk3LWEwNzUtMzgyYjVjOThjMDYyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2MTU4MzMxMTMsImlzcyI6Ik15c2VsZiIsImF1ZCI6Ik15c2VsZiJ9.2Ux4uZl3XTQLJG9cjTjptVsN6N6TlQwDat2McubpWwQ",
@@ -176,7 +177,7 @@ List of sample calls for Admins:
 		"availability": true
 	}
 	
-	Sample of response
+	Sample response
 	{
 	  "message": "New movie saved",
 	  "value": null,
@@ -185,7 +186,7 @@ List of sample calls for Admins:
 	}
 	
 	#Edit movie
-	Endpoing movie/Edit
+	Endpoint movie/Edit
 	
 	POST https://localhost:44384/movie/Edit HTTP/2.0
 	Content-Type: application/json
@@ -202,7 +203,8 @@ List of sample calls for Admins:
 		"availability": true
 	}
 	
-	Sample response{
+	Sample response
+	{
 	  "message": "Changes saved",
 	  "value": null,
 	  "isSuccess": true,
@@ -214,7 +216,7 @@ List of sample calls for Admins:
 	Content-Type: "DELETE"
 	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYWY3YTFjOWEtNjAzOS00Zjk3LWEwNzUtMzgyYjVjOThjMDYyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2MTU4MzMxMTMsImlzcyI6Ik15c2VsZiIsImF1ZCI6Ik15c2VsZiJ9.2Ux4uZl3XTQLJG9cjTjptVsN6N6TlQwDat2McubpWwQ
 
-	Sample of response:
+	Sample response:
 	{
 	  "message": "deleted id:2",
 	  "value": null,
@@ -222,16 +224,16 @@ List of sample calls for Admins:
 	  "errorList": null
 	}
 	
-	#list of movies complete
+	#complete movies list (not filtered by availability)
 	Parameters: Admin/List/{availability:int?}/{pagesize:int?}/{pagenumber:int?}/{sortby:int?}
 	availability values {0: unavariable movies, 1: available movies, 2: all}
-	If no data is entered the default value is bring all (only for admins)
+	If no data is entered the default value is to bring all (only for admins)
 	
 	GET https://localhost:44384/movie/admin/list/0
 	Content-Type: application/json
 	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYWY3YTFjOWEtNjAzOS00Zjk3LWEwNzUtMzgyYjVjOThjMDYyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2MTU4MzMxMTMsImlzcyI6Ik15c2VsZiIsImF1ZCI6Ik15c2VsZiJ9.2Ux4uZl3XTQLJG9cjTjptVsN6N6TlQwDat2McubpWwQ
 
-	sample of response
+	Sample response
 	
 	{
 	  "list": [
@@ -262,11 +264,11 @@ List of sample calls for Admins:
 	}
 	
 	#search for admins
-	Just like the search fuction for unregistered user/clients but with the posibility of filtering by availability
+	Just like the search function for unregistered user/clients but with the possibility of filtering by availability
 	GET https://localhost:44384/movie/Admin/Search/Bob
 	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYWY3YTFjOWEtNjAzOS00Zjk3LWEwNzUtMzgyYjVjOThjMDYyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2MTU4MzMxMTMsImlzcyI6Ik15c2VsZiIsImF1ZCI6Ik15c2VsZiJ9.2Ux4uZl3XTQLJG9cjTjptVsN6N6TlQwDat2McubpWwQ
 
-	Sample of response:
+	Sample response:
 	
 	{
 	  "list": [
@@ -290,7 +292,7 @@ List of sample calls for Admins:
 	Content-Type: application/json
 	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYWY3YTFjOWEtNjAzOS00Zjk3LWEwNzUtMzgyYjVjOThjMDYyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2MTU4MzMxMTMsImlzcyI6Ik15c2VsZiIsImF1ZCI6Ik15c2VsZiJ9.2Ux4uZl3XTQLJG9cjTjptVsN6N6TlQwDat2McubpWwQ
 	
-	Sample of response:
+	Sample response:
 	[
 	  {
 		"id": "3fcb6001-7277-40b0-849c-f90125639b3d",
@@ -321,7 +323,7 @@ List of sample calls for Admins:
 		]
 	}
 	
-	sample of response (value is the id):
+	sample response (value is the id):
 	{
 	  "message": "New role created",
 	  "value": "fa2f91ba-2c2c-4efd-b6f2-954ed6cd7e23",
@@ -339,7 +341,7 @@ List of sample calls for Admins:
 		"RoleId": "047febd3-e3f9-42d1-9628-aa275eea3d17"
 	}
 	
-	sample of response:
+	sample response:
 	{
 	  "message": "Assigned",
 	  "value": "UserID:adce201f-7f02-44b9-af83-7c59db4e58af Role: tester",
@@ -382,7 +384,7 @@ List of sample calls for Admins:
 		"Roles": ["ca1ba776-f31b-4ff3-8f06-7b7d0d23a6fe", "9322ee80-3bb9-46f1-95b6-782ab6a7ad59"]
 	}
 	
-	Sample Response(returns the id of the user created as message):
+	Sample Response(value is userid):
 	{
 	  "message": "New user registered",
 	  "value": "adce201f-7f02-44b9-af83-7c59db4e58af",
@@ -444,7 +446,7 @@ List of actions allowed for Clients and Admins
 	Content-Type: application/json
 	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImNsaWVudEBjbGllbnQuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIxZmRmNDYzNi0yN2RiLTQ1MjgtYjRlNi0zY2IxMDYwYTRkNWIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnQiLCJleHAiOjE2MTU4Mzc3NDMsImlzcyI6Ik15c2VsZiIsImF1ZCI6Ik15c2VsZiJ9.8MdxJRuT0022B1w9wTcv1MDDcyqJ_FgB531sflvBLgI
 	
-	sample of response: 
+	sample response: 
 	[
 	  {
 		"id": 2,
@@ -493,7 +495,7 @@ List of actions that can be done for unregistered users, client and admins
 	Endpoint: ForgetPassword?email={email}
 	GET https://localhost:44384/ForgetPassword?email=newuser3@admin.com
 	
-	sample of response
+	sample response
 	{
 	  "message": "Email sent",
 	  "value": null,
@@ -518,7 +520,7 @@ List of actions that can be done for unregistered users, client and admins
 		"ConfirmPassword":"password1234"
 	}
 	
-	sample of response
+	sample response
 	{
 	  "message": "Please login with your new password",
 	  "value": null,
