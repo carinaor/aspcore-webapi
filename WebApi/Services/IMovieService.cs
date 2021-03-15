@@ -225,37 +225,45 @@ namespace WebApi.Services
             }
         }
         public async Task<ResponseModel> LikeUnlikeMovie(string userid, int movieid) {
+            
             MovieLikes li = LikeExists(userid, movieid);
-
-            if (li == null)
-            {
-                //Like doesn't exists, like movie
-                li = new MovieLikes();
-                li.UserId = userid;
-                li.Movie = _context.movie.FirstOrDefault(x => x.Id == movieid);
-                _context.Add(li);
-
-                await _context.SaveChangesAsync();
-
-                return new ResponseModel
+            if (MovieExists(movieid)) { 
+                if (li == null)
                 {
-                    IsSuccess = true,
-                    Value = li.Id.ToString(),
-                    Message = "Like added"
-                };
-            }
-            else
-            {
-                //Like exists, unlike movie
-                _context.movieLikes.Remove(li);
-                await _context.SaveChangesAsync();
-                return new ResponseModel
+                    //Like doesn't exists, like movie
+                    li = new MovieLikes();
+                    li.UserId = userid;
+                    li.Movie = _context.movie.FirstOrDefault(x => x.Id == movieid);
+
+                    _context.Add(li);
+
+                    await _context.SaveChangesAsync();
+
+                    return new ResponseModel
+                    {
+                        IsSuccess = true,
+                        Value = li.Id.ToString(),
+                        Message = "Like added"
+                    };
+                }
+                else
                 {
-                    IsSuccess = true,
-                    Value = li.Id.ToString(),
-                    Message = "Like removed"
-                };
+                    //Like exists, unlike movie
+                    _context.movieLikes.Remove(li);
+                    await _context.SaveChangesAsync();
+                    return new ResponseModel
+                    {
+                        IsSuccess = true,
+                        Value = li.Id.ToString(),
+                        Message = "Like removed"
+                    };
+                }
             }
+
+            return new ResponseModel { 
+                IsSuccess = false,
+                Message = "Movie doesn't exist"
+            };
         }
         private bool MovieExists(int id)
         {

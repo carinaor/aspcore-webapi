@@ -478,6 +478,28 @@ Sample Response(value is userid):
 	
 # List of actions allowed for Clients and Admins
 
+Like
+----
+enpoint 
+GET movie/like/{movieid}
+
+if the user already liked the movie, the like is removed
+
+sample request 
+
+	GET https://localhost:44384/movie/like/1
+	Content-Type: application/json
+	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6Im5ld3VzZXIzQGFkbWluLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiZGI5M2I0MzAtMjNhZi00ZDc4LWI2ZTktMDNkMmVkZmQyODFhIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQ2xpZW50IiwiZXhwIjoxNjE1ODM4ODE2LCJpc3MiOiJNeXNlbGYiLCJhdWQiOiJNeXNlbGYifQ.3BL6BBIuozbDoeDsrHT8QOlO-Tf37-5JkmsxikubqU4
+
+sample response
+
+	{
+	  "message": "Like added",
+	  "value": "2",
+	  "isSuccess": true,
+	  "errorList": null
+	}
+
 Logout
 -----
 sample request
